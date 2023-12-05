@@ -18,13 +18,14 @@ class ProdukController extends Controller
         // if statusView is not null
         if ($statusView) {
             // check statusView in database statuses which is in Status Model
-            $status = Status::where('nama_status', $statusView)->first();
+            $status = Status::where('nama_status', $statusView)->select('id_status')->first();
             // if status is not null
             if ($status) {
-                $statusId = $status->id;
-                $allInp = Produk::where('status', $statusId)->get();
+                $statusId = $status['id_status'];
+                $allInp = Produk::where('status_id', $statusId)->get();
+            } else {
+                $allInp = Produk::all();
             }
-            $allInp = Produk::all();
         } else {
             $allInp = Produk::all();
         }
