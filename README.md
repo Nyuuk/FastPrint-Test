@@ -20,7 +20,7 @@ Jika Anda tidak menggunakan Docker, Anda dapat menggunakan PHP Artisan Serve:
 
 1. Clone repositori dari GitHub:
    ```bash
-   git clone https://github.com/nama-pengguna/ProyekLaravel.git
+   git clone https://github.com/Nyuuk/FastPrint-Test
    ```
 
 2. Pindah ke direktori proyek:
