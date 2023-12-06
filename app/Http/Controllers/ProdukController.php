@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
 use App\Models\Produk;
 use App\Models\Status;
 use Illuminate\Http\Request;
@@ -15,6 +16,7 @@ class ProdukController extends Controller
     {
         //
         $statusView = $request->query('status');
+        $allInp = [];
         // if statusView is not null
         if ($statusView) {
             // check statusView in database statuses which is in Status Model
@@ -22,14 +24,18 @@ class ProdukController extends Controller
             // if status is not null
             if ($status) {
                 $statusId = $status['id_status'];
-                $allInp = Produk::where('status_id', $statusId)->get();
+                $allInp['produk'] = Produk::where('status_id', $statusId)->get();
             } else {
-                $allInp = Produk::all();
+                $allInp['produk'] = Produk::all();
             }
         } else {
-            $allInp = Produk::all();
+            $allInpp['produk'] = Produk::all();
         }
-        // $data = Produk::all();
+
+        // $allInp['kategori'] = Kategori::all();
+        // $allInp['status'] = Status::all();
+        $allInp['kategori'] = Kategori::select('id_kategori as id', 'nama_kategori as nama')->get();
+        $allInp['status'] = Status::select('id_status as id', 'nama_status as nama')->get();
 
         return response()->json($allInp, 200);
     }
@@ -67,12 +73,11 @@ class ProdukController extends Controller
 
         $data = Produk::where('id_produk', $id)->first();
 
-        if ($data)
-        {
+        if ($data) {
             $data->update($validatedData);
             return response()->json(["message" => "Data produk di ubah " . $data['nama']], 200);
         }
-        return response() -> json(['message' => 'Data produk tidak di ubah atau tidak ada'], 404);
+        return response()->json(['message' => 'Data produk tidak di ubah atau tidak ada'], 404);
     }
 
     /**
@@ -83,11 +88,10 @@ class ProdukController extends Controller
         //
         $data = Produk::where('id_produk', $id)->first();
 
-        if ($data)
-        {
+        if ($data) {
             $data->delete();
             return response()->json(["message" => "Data produk di hapus " . $data['nama']], 200);
         }
-        return response() -> json(['message' => 'Data produk tidak di hapus atau tidak ada'], 404);
+        return response()->json(['message' => 'Data produk tidak di hapus atau tidak ada'], 404);
     }
 }

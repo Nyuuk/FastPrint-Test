@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
 use App\Models\Produk;
 use App\Models\Status;
 use Illuminate\Http\Request;
@@ -15,12 +16,19 @@ class TestingController extends Controller
 
         // return response()->json(["id" => $data], 200);
 
-        $paramStatusName = $request->query('status');
-        $id = Status::where('nama_status', $paramStatusName)->select('id_status')->first();
-        if ($id)
-        {
-            return response()->json(['message' => 'oke']);
-        }
-        return response()->json(['param'=>$id], 200);
+        // $paramStatusName = $request->query('status');
+        // $id = Status::where('nama_status', $paramStatusName)->select('id_status')->first();
+        // if ($id)
+        // {
+        //     return response()->json(['message' => 'oke']);
+        // }
+        // return response()->json(['param'=>$id], 200);
+
+        $allInp = [];
+        $allInp['Kategori'] = Kategori::all();
+        $allInp['Status'] = Status::all();
+        $allInp['Produk'] = Produk::all();
+
+        return response()->json($allInp);
     }
 }

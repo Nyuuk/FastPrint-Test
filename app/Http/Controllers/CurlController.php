@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kategori;
 use App\Models\Produk;
 use App\Models\Status;
-use DateTime;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CurlController extends Controller
@@ -13,7 +13,10 @@ class CurlController extends Controller
     //
     private function getDataApi()
     {
-        $today = new DateTime();
+        // Set the time zone to Jakarta
+        date_default_timezone_set('Asia/Jakarta');
+
+        $today = Carbon::now();
         $day = $today->format('d');
         $month = $today->format('m');
         $year = $today->format('y');
