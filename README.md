@@ -10,6 +10,7 @@ Sebelum memulai, pastikan sistem Anda memenuhi persyaratan berikut:
 
 - PHP 8.2 atau versi lebih tinggi terinstal
 - [Node.js](https://nodejs.org/) terinstal
+- Composer
 - [NPM](https://www.npmjs.com/) terinstal
 
 ### Instalasi dengan PHP Artisan Serve
@@ -34,6 +35,7 @@ Jika Anda tidak menggunakan Docker, Anda dapat menggunakan PHP Artisan Serve:
 
 4. Install dependencies dan atur kunci aplikasi:
    ```bash
+   composer install
    php artisan migrate
    php artisan key:generate
    ```
