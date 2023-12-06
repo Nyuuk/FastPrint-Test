@@ -36,6 +36,7 @@ Jika Anda tidak menggunakan Docker, Anda dapat menggunakan PHP Artisan Serve:
 4. Install dependencies dan atur kunci aplikasi:
    ```bash
    composer install
+   npm install
    php artisan migrate
    php artisan key:generate
    ```
