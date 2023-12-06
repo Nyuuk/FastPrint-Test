@@ -49,4 +49,4 @@ Jika Anda tidak menggunakan Docker, Anda dapat menggunakan PHP Artisan Serve:
 Pastikan untuk mengonfigurasi file `.env` sesuai dengan pengaturan database dan kebutuhan lainnya sebelum menjalankan perintah `php artisan migrate`.
 
 ![image](https://github.com/Nyuuk/FastPrint-Test/assets/76798963/5c9aef49-a303-4a70-8e80-7983abb1c0dc)
-jika anda tidak melihat data yang harus di ambil dari [Api FastPrint](https://recruitment.fastprint.co.id/tes/programmer), maka anda harus mengklik *Refresh Produk*
+jika anda tidak melihat data yang harus di ambil dari [Api FastPrint](https://recruitment.fastprint.co.id/tes/programmer), maka anda harus mengklik *Refresh Produk*. untuk Back-End URL API sama kan dengan link asli localhost
