@@ -1,11 +1,20 @@
 version: '3'
 
 services:
+  database:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: laraveluser
+      MYSQL_PASSWORD: laravelpassword
+      MYSQL_ROOT_PASSWORD: rootpassword
+    networks:
+      - laravel
+
   app:
-    image: php:latest
-    volumes:
-      - .:/var/www/html
-    working_dir: /var/www/html
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
     - "8081:8000"
     networks:
@@ -19,17 +28,7 @@ services:
       - "DB_DATABASE=laravel"
       - "DB_USERNAME=laraveluser"
       - "DB_PASSWORD=laravelpassword"
-    command: ["php", "artisan", "serve", "--host=0.0.0.0"]
 
-  database:
-    image: mysql:5.7
-    environment:
-      MYSQL_DATABASE: laravel
-      MYSQL_USER: laraveluser
-      MYSQL_PASSWORD: laravelpassword
-      MYSQL_ROOT_PASSWORD: rootpassword
-    networks:
-      - laravel
 
 networks:
   laravel:
