@@ -8,15 +8,15 @@ Project ini menggunakan Framework [Laravel](https://laravel.com/), [React Js](ht
 ### Persyaratan
 Sebelum memulai, pastikan sistem Anda memenuhi persyaratan berikut:
 
+- [Composer](https://getcomposer.org/) terinstal
 - PHP 8.2 atau versi lebih tinggi terinstal
 - [Node.js](https://nodejs.org/) terinstal
-- Composer
+- [Docker](https://www.docker.com/) terinstal (opsional, hanya jika Anda ingin menggunakan Docker)
 - [NPM](https://www.npmjs.com/) terinstal
 
-### Instalasi dengan PHP Artisan Serve
-Pastikan untuk menginstall extensi `pdo`, `mysqli`
 
-Jika Anda tidak menggunakan Docker, Anda dapat menggunakan PHP Artisan Serve:
+### Instalasi dengan Docker (Opsional)
+Jika Anda ingin menggunakan Docker, ikuti langkah-langkah berikut:
 
 1. Clone repositori dari GitHub:
    ```bash
@@ -28,7 +28,56 @@ Jika Anda tidak menggunakan Docker, Anda dapat menggunakan PHP Artisan Serve:
    cd FastPrint-Test
    ```
 
-3. Copy `.env.example` menjadi `.env`:
+3. Copy `.env.docker` menjadi `.env`:
+   ```bash
+   cp .env.docker .env
+   ```
+
+4. Buat container Docker dan jalankan proyek:
+   ```bash
+   docker-compose up -d
+   ```
+
+5. Masuk ke dalam container untuk menjalankan perintah artisan:
+   ```bash
+   docker-compose exec app bash
+   ```
+
+6. Install dependencies dan atur kunci aplikasi:
+   ```bash
+   docker-php-ext-install pdo mysqli pdo_mysql
+   docker-php-ext-enable pdo mysqli pdo_mysql
+   composer install
+   apt update -y && apt install npm nodejs -y
+   npm install
+   php artisan migrate
+   php artisan key:generate
+   ```
+
+7. Keluar dari container:
+   ```bash
+   exit
+   ```
+
+8. Akses proyek di [http://localhost:8081](http://localhost:8081)
+
+### Instalasi dengan PHP Artisan Serve
+Pastikan untuk menginstall extensi `pdo`, `mysqli`
+
+Jika Anda tidak menggunakan Docker, Anda dapat menggunakan PHP Artisan Serve:
+- Pastikan sudah terinstall extension PHP `pdo`, `mysqli` & `pdo_mysql`
+
+1. Clone repositori dari GitHub:
+   ```bash
+   git clone https://github.com/Nyuuk/FastPrint-Test
+   ```
+
+2. Pindah ke direktori proyek:
+   ```bash
+   cd FastPrint-Test
+   ```
+
+3. Copy `.env.example` menjadi `.env` & silahkan konfigurasi database user dan password terlebih dahulu:
    ```bash
    cp .env.example .env
    ```
