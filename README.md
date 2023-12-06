@@ -12,7 +12,6 @@ Sebelum memulai, pastikan sistem Anda memenuhi persyaratan berikut:
 - PHP 8.2 atau versi lebih tinggi terinstal
 - [Node.js](https://nodejs.org/) terinstal
 - [Docker](https://www.docker.com/) terinstal (opsional, hanya jika Anda ingin menggunakan Docker)
-- [NPM](https://www.npmjs.com/) terinstal
 
 
 ### Instalasi dengan Docker (Opsional)
@@ -28,11 +27,6 @@ Jika Anda ingin menggunakan Docker, ikuti langkah-langkah berikut:
    cd FastPrint-Test
    ```
 
-3. Copy `.env.docker` menjadi `.env`:
-   ```bash
-   cp .env.docker .env
-   ```
-
 4. Buat container Docker dan jalankan proyek:
    ```bash
    docker-compose up -d
@@ -43,15 +37,9 @@ Jika Anda ingin menggunakan Docker, ikuti langkah-langkah berikut:
    docker-compose exec app bash
    ```
 
-6. Install dependencies dan atur kunci aplikasi:
+6. Migrasi Database:
    ```bash
-   docker-php-ext-install pdo mysqli pdo_mysql
-   docker-php-ext-enable pdo mysqli pdo_mysql
-   composer install
-   apt update -y && apt install npm nodejs -y
-   npm install
    php artisan migrate
-   php artisan key:generate
    ```
 
 7. Keluar dari container:
